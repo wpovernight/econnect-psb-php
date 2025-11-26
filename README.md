@@ -4,20 +4,31 @@ A reference implementation meant as an example how to use the PSB api using PHP.
 
 ## Requirements
 
-- PHP 7.2 or greater
+- PHP 7.2.5 or greater
+- Composer
 
 ## Install
 
-- Install library using [`composer`][0].
+In your project `composer.json`, point the package to this fork:
 
-```sh
-composer require everbinding/econnect-psb-php
+```json
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/wpovernight/econnect-psb-php.git"
+    }
+  ],
+  "require": {
+    "everbinding/econnect-psb-php": "dev-master"
+  }
+}
 ```
 
-Then include composer autoloader.
+Then update/install the dependency:
 
-```php
-require __DIR__ . '/vendor/autoload.php';
+```sh
+composer update
 ```
 
 ## Configure
@@ -88,7 +99,7 @@ $oidc = new OpenIDConnectClient('https://identity.econnect.eu',
                                 '{clientId}',
                                 '{clientSecret}');
 
-$oidc->addScope('ap');
+$oidc->addScope(['ap']);
 
 // Add username and password
 $oidc->addAuthParam(array('username'=>'{username}'));

@@ -31,11 +31,12 @@ namespace EConnect\Psb\Api;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Utils;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Psr7\Query;
-use GuzzleHttp\Utils;
+use GuzzleHttp\Psr7\Utils as Psr7Utils;
 use EConnect\Psb\ApiException;
 use EConnect\Psb\Configuration;
 use EConnect\Psb\HeaderSelector;
@@ -1219,7 +1220,7 @@ class PurchaseInvoiceApi
             $formParams['file'] = [];
             $paramFiles = is_array($file) ? $file : [$file];
             foreach ($paramFiles as $paramFile) {
-                $formParams['file'][] = Utils::tryFopen(
+                $formParams['file'][] = Psr7Utils::tryFopen(
                     ObjectSerializer::toFormValue($paramFile),
                     'rb'
                 );

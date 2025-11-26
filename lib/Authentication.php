@@ -23,7 +23,7 @@ class Authentication
             $config->getClientSecret()
         );
 
-        $this->oidc->addScope("ap");
+        $this->oidc->addScope(["ap"]);
     }
 
     public function login()
